@@ -1,0 +1,37 @@
+//
+//  FlowerDetailsRouter.swift
+//  FlowrSpot
+//
+//  Created by Marko Stajic on 01/05/2020.
+//  Copyright © 2020 PovioLabs. All rights reserved.
+//
+
+import UIKit
+
+protocol FlowerDetailsRoutingLogic {
+  func navigateToNewSighting(sightingId: Int)
+  func navigateToAlert(title: String, message: String, handler: (() -> Void)?)
+}
+
+protocol FlowerDetailsRouterDelegate: class {
+  
+}
+
+class FlowerDetailsRouter {
+  weak var viewController: FlowerDetailsViewController?
+  weak var delegate: FlowerDetailsRouterDelegate?
+}
+
+// MARK: - Routing Logic
+extension FlowerDetailsRouter: FlowerDetailsRoutingLogic {
+  func navigateToNewSighting(sightingId: Int) {
+    // TODO: - Implement me
+  }
+  
+  func navigateToAlert(title: String, message: String, handler: (() -> Void)?) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "general_ok".localized(), style: .cancel, handler: { _ in handler?() }))
+    viewController?.present(alert, animated: true, completion: nil)
+  }
+}
+
