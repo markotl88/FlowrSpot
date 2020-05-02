@@ -10,14 +10,14 @@ import XCTest
 @testable import FlowrSpot
 
 class ArrayTests: XCTestCase {
-  
-  private let array = [0, 1, 2, 3]
+
+    private let array = [0, 1, 2, 3]
   
   func testSafeSubscript() {
     XCTAssertNil(array[safe: -1])
     XCTAssertNil(array[safe: array.count])
-    for i in 0..<array.count {
-      XCTAssertEqual(array[safe: i], i)
+    for index in 0..<array.count {
+      XCTAssertEqual(array[safe: index], index)
     }
   }
 }
