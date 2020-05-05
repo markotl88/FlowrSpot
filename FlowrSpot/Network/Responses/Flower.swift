@@ -10,8 +10,9 @@ struct Flower: Codable {
     let id: Int
     let name: String
     let latinName: String
-    let sightings: Int
+    let sightings: Int?
     let profilePicture: String
-    let favorite: Bool
+    let favorite: Bool?
     let description: String?
+    let features: [String]?
 }

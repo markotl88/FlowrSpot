@@ -10,7 +10,7 @@ import UIKit
 import PovioKit
 
 class FlowerDetailsContentView: UIView {
-  let collectionViewDimensions = FlowerCollectionViewItemDimenson(numberOfItemsInRow: 2, insets: 8)
+  let collectionViewDimensions = FlowerCollectionViewItemDimenson(numberOfItemsInRow: 1, insets: 0)
     let headerViewHeight: CGFloat = (UIScreen.main.bounds.width * 0.936)
   let headerView = FlowerDetailsHeaderView.autolayoutView()
   let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).autolayoutView()
@@ -62,7 +62,8 @@ private extension FlowerDetailsContentView {
     collectionView.backgroundColor = .white
     collectionView.keyboardDismissMode = .onDrag
     collectionView.contentInset = UIEdgeInsets(top: headerViewHeight, left: 0, bottom: 0, right: 0)
-    collectionView.register(FlowerCollectionViewCell.self)
+    collectionView.register(SightingCollectionViewCell.self)
+
     if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       flowLayout.scrollDirection = .vertical
       flowLayout.sectionInset = collectionViewDimensions.sectionInset
@@ -73,7 +74,7 @@ private extension FlowerDetailsContentView {
       $0.edges.equalToSuperview()
     }
   }
-  
+    
   func setupHeaderView() {
     addSubview(headerView)
     headerView.snp.makeConstraints {

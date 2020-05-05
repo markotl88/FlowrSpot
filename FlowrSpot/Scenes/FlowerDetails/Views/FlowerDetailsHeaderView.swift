@@ -24,7 +24,7 @@ class FlowerDetailsHeaderView: UIView {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        return true
+        return false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,11 +32,16 @@ class FlowerDetailsHeaderView: UIView {
     }
     
     public func updateFlower(_ flower: Flower) {
+        backgroundImageView.kf.indicatorType = .activity
         backgroundImageView.kf.setImage(with: URL(string: "http:\(flower.profilePicture)"))
         titleLabel.text = flower.name
         subtitleLabel.text = flower.latinName
-        sightingLabel.text = "sightings_count".localized(flower.sightings)
+        sightingLabel.text = "sightings_count".localized(flower.sightings ?? 0)
         backgroundImageView.addBlackGradientLayerInBackground(frame: backgroundImageView.bounds, colors: [.clear, .black])
+    }
+    
+    public func deinitViews() {
+        backgroundImageView.image = nil
     }
 }
 
@@ -54,7 +59,7 @@ private extension FlowerDetailsHeaderView {
     
     func setupBackgroundImageView() {
         addSubview(backgroundImageView)
-        
+        backgroundImageView.clipsToBounds = true
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.snp.makeConstraints {
             $0.top.left.right.bottom.equalToSuperview()
@@ -121,7 +126,7 @@ private extension FlowerDetailsHeaderView {
         sightingLabel.textColor = .white
         sightingLabel.snp.makeConstraints {
             $0.left.equalTo(15)
-            $0.right.equalTo(15)
+            $0.right.equalTo(-15)
             $0.centerY.equalToSuperview()
         }
     }

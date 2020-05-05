@@ -19,3 +19,7 @@
 
 "sightings_count" = "%d sightings";
 "add_sighting" = "+ Add New Sighting";
+"comments_count" = "%d Comments";
+"likes_count" = "%d Favorites";
+"by_user" = "by %@";
+"by_unknown_user" = "by Unknown user";

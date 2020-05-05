@@ -10,6 +10,7 @@ import PovioKit
 
 protocol FlowerDetailsDisplayLogic: class {
     func displayFlower(_ flower: Flower)
+    func displaySightings(_ sightings: [Sighting])
     func displayError(_ error: RemoteResourceError)
 }
 
@@ -17,7 +18,7 @@ class FlowerDetailsViewController: UIViewController {
     var interactor: FlowerDetailsBusinessLogic?
     var router: FlowerDetailsRoutingLogic?
     private lazy var contentView = FlowerDetailsContentView.autolayoutView()
-    private let flowersDataSource = FlowersDataSource()
+    private let flowerDetailsDataSource = FlowerDetailsDataSource()
     
     init(delegate: FlowerDetailsRouterDelegate?, flowerId: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -42,16 +43,24 @@ class FlowerDetailsViewController: UIViewController {
         setupViews()
         loadData()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        deinitViews()
+    }
 }
 
 // MARK: - Display Logic
 extension FlowerDetailsViewController: FlowerDetailsDisplayLogic {
+    func displaySightings(_ sightings: [Sighting]) {
+        flowerDetailsDataSource.update(sightings: sightings)
+        contentView.collectionView.reloadData()
+        contentView.emptyView.isHidden = true
+    }
     
     func displayFlower(_ flower: Flower) {
         contentView.headerView.updateFlower(flower)
-//                flowersDataSource.update(flowers: flowers)
-//                contentView.collectionView.reloadData()
-//                contentView.emptyView.isHidden = true
     }
     
     func displayError(_ error: RemoteResourceError) {
@@ -63,36 +72,53 @@ extension FlowerDetailsViewController: FlowerDetailsDisplayLogic {
 // MARK: - UICollectionView Delegate
 extension FlowerDetailsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
         return contentView.collectionViewDimensions.sizeForItem(at: indexPath, for: collectionView)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let row = flowersDataSource.row(at: indexPath) else {
+        guard let row = flowerDetailsDataSource.row(at: indexPath) else {
             Logger.error("No availible row in dataSource at \(indexPath)")
             return
         }
         switch row {
-        case let .flower(entity):
+        case let .sighting(entity):
             debugPrint("Entity: \(entity)")
             //      router?.navigateToFlowerDetails(flower: entity)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? FlowerDescriptionSectionHeaderView {
+                sectionHeader.label.text = "TRENDING"
+                return sectionHeader
+            }
+            return UICollectionReusableView()
+        } else { //No footer in this case but can add option for that
+            return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 500)
+    }
 }
 
-// MARK: - UIScrollView Delegate
+//// MARK: - UIScrollView Delegate
 extension FlowerDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffset = -scrollView.contentOffset.y
-        
+
         let percentage = 1 - (contentOffset / contentView.headerViewHeight)
-        
+
         var headerViewTranslation = -percentage * contentView.headerViewHeight
         if headerViewTranslation > 0 {
             headerViewTranslation = 0 // lock headerView
         }
-        
+
         contentView.headerView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: headerViewTranslation)
-        
+
         switch percentage {
         case 0.75...:
             contentView.showSearchButton()
@@ -113,13 +139,17 @@ private extension FlowerDetailsViewController {
         setupContentView()
     }
     
+    func deinitViews() {
+        contentView.headerView.deinitViews()
+    }
+    
     func setupContentView() {
         view.addSubview(contentView)
         contentView.snp.makeConstraints { $0.edges.equalToSuperview() }
         contentView.rightBarButton.setImage(#imageLiteral(resourceName: "plIconSearch"), for: .normal)
         contentView.rightBarButton.addTarget(self, action: #selector(barButtonPressed), for: .touchUpInside)
         contentView.collectionView.delegate = self
-        contentView.collectionView.dataSource = flowersDataSource
+        contentView.collectionView.dataSource = flowerDetailsDataSource
     }
     
     func setupNavigationView() {
@@ -127,6 +157,7 @@ private extension FlowerDetailsViewController {
     
     func loadData() {
         interactor?.fetchFlower()
+        interactor?.fetchFlowerSightings()
     }
     
     @objc func backBarButtonPressed() {

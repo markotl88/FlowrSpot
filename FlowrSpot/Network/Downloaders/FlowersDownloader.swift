@@ -28,4 +28,10 @@ extension FlowersDownloader {
         success?($0.flower)
     }, failure: failure)
   }
+    
+    func fetchFlowerSightings(flowerId: Int, success: RestClient.SuccessCompletion<[Sighting]>, failure: RestClient.FailureCompletion) {
+        restClient.request(SightingsContainer.self, FlowerRequests.flowerSightings(flowerid: flowerId), version: .v1, success: {
+            success?($0.sightings)
+        }, failure: failure)
+    }
 }

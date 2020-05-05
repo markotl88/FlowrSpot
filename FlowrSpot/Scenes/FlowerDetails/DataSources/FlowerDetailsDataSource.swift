@@ -9,11 +9,11 @@
 import PovioKit
 
 class FlowerDetailsDataSource: NSObject, DataSource {
-  var sections = [FlowersSection]()
-  private var flowers = [Flower]()
+  var sections = [FlowerDetailsSection]()
+  private var sightings = [Sighting]()
   
-  func update(flowers: [Flower]) {
-    self.flowers = flowers
+  func update(sightings: [Sighting]) {
+    self.sightings = sightings
     buildSections()
   }
 }
@@ -23,7 +23,7 @@ extension FlowerDetailsDataSource: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return numberOfSections()
   }
-  
+      
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return numberOfRows(in: section)
   }
@@ -34,10 +34,10 @@ extension FlowerDetailsDataSource: UICollectionViewDataSource {
       return UICollectionViewCell()
     }
     
-    let cell = collectionView.dequeueReusableCell(FlowerCollectionViewCell.self, at: indexPath)
+    let cell = collectionView.dequeueReusableCell(SightingCollectionViewCell.self, at: indexPath)
     switch row {
-    case let .flower(entity):
-      cell.setFlower(entity)
+    case let .sighting(entity):
+      cell.setSighting(entity)
     }
     return cell
   }
@@ -46,7 +46,7 @@ extension FlowerDetailsDataSource: UICollectionViewDataSource {
 // MARK: - Private Methods
 private extension FlowerDetailsDataSource {
   func buildSections() {
-    let rows = flowers.map(FlowersRow.flower)
-    sections = [FlowersSection(rows: rows)]
+    let rows = sightings.map(SightingsRow.sighting)
+    sections = [FlowerDetailsSection(rows: rows)]
   }
 }
