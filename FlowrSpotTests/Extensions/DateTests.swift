@@ -41,6 +41,7 @@ class DateTests: XCTestCase {
     
     
     func testStringToDate() {
+        
         for strDate in validDates {
             XCTAssertNotNil(strDate.date())
         }
@@ -48,9 +49,30 @@ class DateTests: XCTestCase {
         for strDate in invalidDates {
             XCTAssertNil(strDate.date())
         }
+        
+        for strDate in shortValidDates {
+            XCTAssertNotNil(strDate.date(withDateFormat: .shortWithMonth))
+        }
+        
+        for strDate in longValidDates {
+            XCTAssertNotNil(strDate.date(withDateFormat: .longWithMonth))
+        }
+
+        for strDate in serbianShortValidDates {
+            XCTAssertNotNil(strDate.date(withDateFormat: .serbianShort, andLocale: .srLatin))
+        }
+
+        for strDate in serbianLongValidDates {
+            XCTAssertNotNil(strDate.date(withDateFormat: .serbianLong, andLocale: .srLatin))
+        }
+
+        for strDate in serbianCyrillicLongValidDates {
+            XCTAssertNotNil(strDate.date(withDateFormat: .serbianLong, andLocale: .srCyrillic))
+        }
     }
     
     func testDateToString() {
+        
         let dates: [Date] = validDates.map { (strDate: String) -> Date in
             return strDate.date() ?? Date()
         }
