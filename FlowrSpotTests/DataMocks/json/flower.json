@@ -1,0 +1,15 @@
+{
+  "flower": {
+    "id": 2,
+    "name": "Lily",
+    "latin_name": "Liliy in latin",
+    "sightings": 11,
+    "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/002/medium/dahlia-1627138_960_720.jpg?1519073382",
+    "favorite": false,
+    "features": [
+      "Kingdom: Flower kingdom",
+      "Height: 1cm"
+    ],
+    "description": " vel urna vitae velit finibus lacinia. Etiam molestie nibh et orci ultricies tincidunt. Duis maximus, ipsum sit amet fringilla molestie, arcu nulla ultricies augue, eget placerat orci dui vel nisi. Vivamus nec interdum arcu. Pellentesque aliquam vitae enim sit amet condimentum. Sed ut accumsan eros. Nunc nec faucibus lacus. Pellentesque elementum nibh in sollicitudin facilisis. Proin at fringilla mauris. Curabitur non accumsan sapien. Maecenas tincidunt, dui at sagittis pulvinar, tortor ex molestie sapien, in facilisis risus ex id nisi. Nullam in quam erat"
+  }
+}

@@ -83,6 +83,18 @@
 		4D3C0D51246170C300EBC936 /* ReverseGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D50246170C300EBC936 /* ReverseGeocoder.swift */; };
 		4D3C0D552461765C00EBC936 /* NewSightingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D542461765C00EBC936 /* NewSightingViewController.swift */; };
 		4D3C0D572461766C00EBC936 /* SightingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D562461766C00EBC936 /* SightingDetailsViewController.swift */; };
+		4D3C0D5B2461816100EBC936 /* flower.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D3C0D5A2461816100EBC936 /* flower.json */; };
+		4D3C0D5E246181C400EBC936 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D5D246181C400EBC936 /* Helper.swift */; };
+		4D3C0D5F246181F600EBC936 /* RemoteResourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787E6452015D3E90080A599 /* RemoteResourceError.swift */; };
+		4D3C0D612461845100EBC936 /* FlowerDetailsDataMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D602461845100EBC936 /* FlowerDetailsDataMock.swift */; };
+		4D3C0D632461868200EBC936 /* FlowerDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D622461868200EBC936 /* FlowerDetailsMapperTests.swift */; };
+		4D3C0D65246187AB00EBC936 /* sightings.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D3C0D64246187AB00EBC936 /* sightings.json */; };
+		4D3C0D67246187D500EBC936 /* SightingsDataMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D66246187D500EBC936 /* SightingsDataMock.swift */; };
+		4D3C0D692461881E00EBC936 /* SightingsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D682461881E00EBC936 /* SightingsMapperTests.swift */; };
+		4D3C0D6B24618C7B00EBC936 /* FlowerDetailsDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D6A24618C7B00EBC936 /* FlowerDetailsDataSourceTests.swift */; };
+		4D3C0D6D2461941000EBC936 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D6C2461941000EBC936 /* String+Extension.swift */; };
+		4D3C0D72246195E100EBC936 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D71246195E100EBC936 /* DateTests.swift */; };
+		4D3C0D742461968200EBC936 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C0D732461968200EBC936 /* Date+Extension.swift */; };
 		4D5C3A78245CD58F00FF17BE /* FlowerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5C3A77245CD58F00FF17BE /* FlowerContainer.swift */; };
 		4D5C3A7A245CD81400FF17BE /* FlowerDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5C3A79245CD81400FF17BE /* FlowerDetailsHeaderView.swift */; };
 		4D5C3A7C245CE27700FF17BE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5C3A7B245CE27700FF17BE /* UIView+Extension.swift */; };
@@ -183,6 +195,17 @@
 		4D3C0D50246170C300EBC936 /* ReverseGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseGeocoder.swift; sourceTree = "<group>"; };
 		4D3C0D542461765C00EBC936 /* NewSightingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSightingViewController.swift; sourceTree = "<group>"; };
 		4D3C0D562461766C00EBC936 /* SightingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightingDetailsViewController.swift; sourceTree = "<group>"; };
+		4D3C0D5A2461816100EBC936 /* flower.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = flower.json; sourceTree = "<group>"; };
+		4D3C0D5D246181C400EBC936 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		4D3C0D602461845100EBC936 /* FlowerDetailsDataMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerDetailsDataMock.swift; sourceTree = "<group>"; };
+		4D3C0D622461868200EBC936 /* FlowerDetailsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerDetailsMapperTests.swift; sourceTree = "<group>"; };
+		4D3C0D64246187AB00EBC936 /* sightings.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sightings.json; sourceTree = "<group>"; };
+		4D3C0D66246187D500EBC936 /* SightingsDataMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightingsDataMock.swift; sourceTree = "<group>"; };
+		4D3C0D682461881E00EBC936 /* SightingsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightingsMapperTests.swift; sourceTree = "<group>"; };
+		4D3C0D6A24618C7B00EBC936 /* FlowerDetailsDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerDetailsDataSourceTests.swift; sourceTree = "<group>"; };
+		4D3C0D6C2461941000EBC936 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		4D3C0D71246195E100EBC936 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		4D3C0D732461968200EBC936 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		4D5C3A77245CD58F00FF17BE /* FlowerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerContainer.swift; sourceTree = "<group>"; };
 		4D5C3A79245CD81400FF17BE /* FlowerDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerDetailsHeaderView.swift; sourceTree = "<group>"; };
 		4D5C3A7B245CE27700FF17BE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "FlowrSpot/Common/Extensions/UIView+Extension.swift"; sourceTree = SOURCE_ROOT; };
@@ -219,7 +242,9 @@
 		372E5A832019DCC3002839CC /* json */ = {
 			isa = PBXGroup;
 			children = (
+				4D3C0D5A2461816100EBC936 /* flower.json */,
 				372E5A842019DCD7002839CC /* flowers.json */,
+				4D3C0D64246187AB00EBC936 /* sightings.json */,
 			);
 			path = json;
 			sourceTree = "<group>";
@@ -239,6 +264,7 @@
 				99DC55B32016108900E314D1 /* DataSources */,
 				99DC55B020160E0800E314D1 /* Downloaders */,
 				99DC55B42016108900E314D1 /* Extensions */,
+				4D3C0D5C246181B800EBC936 /* Helper */,
 				99DC55B52016108900E314D1 /* Mappers */,
 				3743C2792016049600453B90 /* Info.plist */,
 			);
@@ -249,7 +275,9 @@
 			isa = PBXGroup;
 			children = (
 				372E5A832019DCC3002839CC /* json */,
+				4D3C0D602461845100EBC936 /* FlowerDetailsDataMock.swift */,
 				3743C29C2016234F00453B90 /* FlowersDataMock.swift */,
+				4D3C0D66246187D500EBC936 /* SightingsDataMock.swift */,
 			);
 			path = DataMocks;
 			sourceTree = "<group>";
@@ -316,7 +344,9 @@
 		37603CE72010970F00FB9F78 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				4D3C0D732461968200EBC936 /* Date+Extension.swift */,
 				372B952F22B0D36400B304B3 /* JSONDecoder+Extra.swift */,
+				4D3C0D6C2461941000EBC936 /* String+Extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -349,12 +379,9 @@
 		3787E6462015D3E90080A599 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				3787E6482015D3E90080A599 /* Flower.swift */,
 				4D5C3A77245CD58F00FF17BE /* FlowerContainer.swift */,
 				370F3B8621CB9FFC00C53C85 /* FlowersContainer.swift */,
-				4D3C0D362460B95800EBC936 /* Sighting.swift */,
 				4D3C0D3A2460BA8800EBC936 /* SightingsContainer.swift */,
-				4D3C0D382460B9AF00EBC936 /* User.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -583,6 +610,14 @@
 			path = SightingDetails;
 			sourceTree = "<group>";
 		};
+		4D3C0D5C246181B800EBC936 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4D3C0D5D246181C400EBC936 /* Helper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		99DC55B020160E0800E314D1 /* Downloaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +629,7 @@
 		99DC55B32016108900E314D1 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				4D3C0D6A24618C7B00EBC936 /* FlowerDetailsDataSourceTests.swift */,
 				3743C2992016232F00453B90 /* FlowersDataSourceTests.swift */,
 			);
 			path = DataSources;
@@ -603,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				3743C2912016204F00453B90 /* ArrayTests.swift */,
+				4D3C0D71246195E100EBC936 /* DateTests.swift */,
 				3743C2952016224000453B90 /* UIFontTests.swift */,
 				3743C297201622D200453B90 /* UIViewTests.swift */,
 			);
@@ -612,7 +649,9 @@
 		99DC55B52016108900E314D1 /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
+				4D3C0D622461868200EBC936 /* FlowerDetailsMapperTests.swift */,
 				3743C29E2016256200453B90 /* FlowersMapperTests.swift */,
+				4D3C0D682461881E00EBC936 /* SightingsMapperTests.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -658,6 +697,9 @@
 		99EF39BB22E72301001230BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3787E6482015D3E90080A599 /* Flower.swift */,
+				4D3C0D362460B95800EBC936 /* Sighting.swift */,
+				4D3C0D382460B9AF00EBC936 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -797,7 +839,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D3C0D5B2461816100EBC936 /* flower.json in Resources */,
 				372E5A862019E164002839CC /* flowers.json in Resources */,
+				4D3C0D65246187AB00EBC936 /* sightings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +973,7 @@
 				37B4196C200E06C600173B80 /* AppDelegate.swift in Sources */,
 				3787E6412015D1420080A599 /* Constants.swift in Sources */,
 				37603CEA2010975700FB9F78 /* DataSource.swift in Sources */,
+				4D3C0D742461968200EBC936 /* Date+Extension.swift in Sources */,
 				373597C8201B2D570000CA57 /* EmptyView.swift in Sources */,
 				3787E6542015D3E90080A599 /* Flower.swift in Sources */,
 				37DFD3292011E41C001023ED /* FlowerCollectionViewCell.swift in Sources */,
@@ -977,6 +1022,7 @@
 				4D3C0D3B2460BA8800EBC936 /* SightingsContainer.swift in Sources */,
 				4D3C0D432460CBB800EBC936 /* SightingsRow.swift in Sources */,
 				4D3C0D472460CC9B00EBC936 /* SightingTableViewCell.swift in Sources */,
+				4D3C0D6D2461941000EBC936 /* String+Extension.swift in Sources */,
 				37DFD33C2011E48D001023ED /* UIColor+Extra.swift in Sources */,
 				37DFD3392011E48D001023ED /* UIFont+Extra.swift in Sources */,
 				4D5C3A7C245CE27700FF17BE /* UIView+Extension.swift in Sources */,
@@ -990,10 +1036,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3743C2922016204F00453B90 /* ArrayTests.swift in Sources */,
+				4D3C0D72246195E100EBC936 /* DateTests.swift in Sources */,
+				4D3C0D612461845100EBC936 /* FlowerDetailsDataMock.swift in Sources */,
+				4D3C0D6B24618C7B00EBC936 /* FlowerDetailsDataSourceTests.swift in Sources */,
+				4D3C0D632461868200EBC936 /* FlowerDetailsMapperTests.swift in Sources */,
 				3743C29D2016234F00453B90 /* FlowersDataMock.swift in Sources */,
 				372E5A882019E5DF002839CC /* FlowersDataSourceTests.swift in Sources */,
 				99DC55B220160E1600E314D1 /* FlowersDownloaderTests.swift in Sources */,
 				3743C29F2016256200453B90 /* FlowersMapperTests.swift in Sources */,
+				4D3C0D5E246181C400EBC936 /* Helper.swift in Sources */,
+				4D3C0D5F246181F600EBC936 /* RemoteResourceError.swift in Sources */,
+				4D3C0D67246187D500EBC936 /* SightingsDataMock.swift in Sources */,
+				4D3C0D692461881E00EBC936 /* SightingsMapperTests.swift in Sources */,
 				3743C2962016224000453B90 /* UIFontTests.swift in Sources */,
 				3743C298201622D200453B90 /* UIViewTests.swift in Sources */,
 			);
@@ -1162,7 +1216,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T634YNT6FE;
+				DEVELOPMENT_TEAM = 2QB89332G7;
 				INFOPLIST_FILE = FlowrSpotTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = povio.FlowrSpotTests;
@@ -1180,7 +1234,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T634YNT6FE;
+				DEVELOPMENT_TEAM = 2QB89332G7;
 				INFOPLIST_FILE = FlowrSpotTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = povio.FlowrSpotTests;

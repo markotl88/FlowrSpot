@@ -9,21 +9,35 @@
 import XCTest
 @testable import FlowrSpot
 
-class FlowersMapperTests: XCTestCase {  
-  private let flowersResponse = FlowersDataMock().mockFlowerResponses()
-  
-  func testMapping() {
-    let entities = FlowerResponseMapper.map(response: flowersResponse)
-    XCTAssertEqual(entities.count, flowersResponse.count)
+class FlowersMapperTests: XCTestCase {
     
-    for i in 0..<entities.count {
-      let entity = entities[i]
-      let response = flowersResponse[i]
-      XCTAssertEqual(entity.name, response.name)
-      XCTAssertEqual(entity.latinName, response.latinName)
-      XCTAssertEqual(entity.sightings, response.sightings)
-      XCTAssertEqual(entity.isFavorite, response.favorite)
-      XCTAssertEqual(entity.url, "http:" + response.profilePicture)
+      let names = ["Goosefoot Violet",
+                   "Goosefoot Violet 2",
+                   "Goosefoot Violet 3",
+                   "Goosefoot Violet 4",
+                   "Goosefoot Violet 5"]
+      
+      let latinNames = ["Viola purpurea 1",
+                   "Viola purpurea 2",
+                   "Viola purpurea 3",
+                   "Viola purpurea 4",
+                   "Viola purpurea 5"]
+      
+      let sightings = [1, 10, 50, 20, 30]
+      
+      let favorites = [false, true, true, true, true]
+
+    
+    func testMapping() {
+      let entities = FlowersDataMock().mockFlowerEntities()
+      XCTAssertEqual(entities.count, 5)
+      
+      for i in 0..<entities.count {
+        let entity = entities[i]
+        XCTAssertEqual(entity.name, names[i])
+        XCTAssertEqual(entity.latinName, latinNames[i])
+        XCTAssertEqual(entity.sightings, sightings[i])
+        XCTAssertEqual(entity.favorite, favorites[i])
+      }
     }
-  }
 }

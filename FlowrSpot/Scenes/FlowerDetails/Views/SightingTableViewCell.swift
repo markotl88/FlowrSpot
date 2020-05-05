@@ -42,7 +42,7 @@ extension SightingTableViewCell {
         titleLabel.text = sighting.name
         flowerImageView.kf.setImage(with: URL(string: "http:\(sighting.picture)"))
         if let user = sighting.user?.fullName {
-            userLabel.text = "by_user".localized(user)
+            userLabel.text = "by_user".localized(user.capitalized)
         } else {
             userLabel.text = "by_unknown_user".localized()
         }

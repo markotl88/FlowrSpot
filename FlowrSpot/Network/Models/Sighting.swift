@@ -9,21 +9,7 @@
 import Foundation
 
 struct Sighting: Codable {
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case description
-        case picture
-        case likesCount = "likes_count"
-        case commentsCount = "comments_count"
-        case createdAt = "created_at"
-        case latitude
-        case longitude
-        case user
-        case flower
-    }
-    
+        
     let id: Int
     let name: String
     let description: String

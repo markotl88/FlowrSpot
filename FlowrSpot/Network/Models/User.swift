@@ -10,12 +10,6 @@ import Foundation
 
 struct User: Codable {
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case fullName = "full_name"
-        case profilePicture
-    }
-    
     let id: Int
     let fullName: String?
     let profilePicture: String?
