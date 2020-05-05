@@ -1,6 +1,7 @@
 disabled_rules:
   - trailing_whitespace # Xcode adds whitespaces for each new line
   - todo # we like todos
+  - private_over_fileprivate
 
 excluded:
   - Pods

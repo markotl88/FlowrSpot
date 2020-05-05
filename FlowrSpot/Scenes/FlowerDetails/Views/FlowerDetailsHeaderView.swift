@@ -10,6 +10,8 @@ import UIKit
 
 class FlowerDetailsHeaderView: UIView {
     
+    var addNewSighting: ((Flower) -> Void)?
+    
     private let backgroundImageView = UIImageView.autolayoutView()
     private let titleLabel = UILabel.autolayoutView()
     private let subtitleLabel = UILabel.autolayoutView()
@@ -17,6 +19,7 @@ class FlowerDetailsHeaderView: UIView {
     private let sightingLabelContainerView = UIView.autolayoutView()
     private let sightingLabel = UILabel.autolayoutView()
     private let sightingButton = UIButton.autolayoutView()
+    private var flower: Flower?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +27,7 @@ class FlowerDetailsHeaderView: UIView {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        return false
+        return sightingButton.frame.contains(point)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,16 +35,13 @@ class FlowerDetailsHeaderView: UIView {
     }
     
     public func updateFlower(_ flower: Flower) {
+        self.flower = flower
         backgroundImageView.kf.indicatorType = .activity
         backgroundImageView.kf.setImage(with: URL(string: "http:\(flower.profilePicture)"))
         titleLabel.text = flower.name
         subtitleLabel.text = flower.latinName
         sightingLabel.text = "sightings_count".localized(flower.sightings ?? 0)
         backgroundImageView.addBlackGradientLayerInBackground(frame: backgroundImageView.bounds, colors: [.clear, .black])
-    }
-    
-    public func deinitViews() {
-        backgroundImageView.image = nil
     }
 }
 
@@ -133,6 +133,7 @@ private extension FlowerDetailsHeaderView {
     
     func setupSightingButton() {
         addSubview(sightingButton)
+        sightingButton.addTarget(self, action: #selector(sightingButtonAction(_:)), for: .touchUpInside)
         sightingButton.backgroundColor = UIColor.flowrDarkRed
         sightingButton.setTitle("add_sighting".localized(), for: .normal)
         sightingButton.setTitleColor(UIColor.white, for: .normal)
@@ -143,5 +144,13 @@ private extension FlowerDetailsHeaderView {
             $0.width.equalTo(188)
             $0.centerY.equalTo(self.snp.bottom)
         }
+    }
+    
+    @objc private func sightingButtonAction(_ sender: UIButton) {
+        guard let flower = flower else {
+            debugPrint("Can't create new sighting, flower not available")
+            return
+        }
+        addNewSighting?(flower)
     }
 }

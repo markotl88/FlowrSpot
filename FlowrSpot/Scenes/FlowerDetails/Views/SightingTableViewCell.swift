@@ -1,5 +1,5 @@
 //
-//  SightingCollectionViewCell.swift
+//  SightingTableViewCell.swift
 //  FlowrSpot
 //
 //  Created by Marko Stajic on 05/05/2020.
@@ -9,8 +9,8 @@
 import PovioKit
 import Kingfisher
 
-class SightingCollectionViewCell: UICollectionViewCell {
-    private let imageView = UIImageView.autolayoutView()
+class SightingTableViewCell: UITableViewCell {
+    private let flowerImageView = UIImageView.autolayoutView()
     private let userImageView = UIImageView.autolayoutView()
     private let titleLabel = UILabel.autolayoutView()
     private let userLabel = UILabel.autolayoutView()
@@ -23,22 +23,24 @@ class SightingCollectionViewCell: UICollectionViewCell {
     private let locationImageView = UIImageView.autolayoutView()
     private let locationView = UIView.autolayoutView()
     private let locationLabel = UILabel.autolayoutView()
+    private let gradientLayer = CAGradientLayer()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setupViews()
     }
 }
 
 // MARK: - Public methods
-extension SightingCollectionViewCell {
+extension SightingTableViewCell {
     func setSighting(_ sighting: Sighting) {
         titleLabel.text = sighting.name
-        imageView.kf.setImage(with: URL(string: "http:\(sighting.picture)"))
+        flowerImageView.kf.setImage(with: URL(string: "http:\(sighting.picture)"))
         if let user = sighting.user?.fullName {
             userLabel.text = "by_user".localized(user)
         } else {
@@ -50,17 +52,24 @@ extension SightingCollectionViewCell {
         descriptionLabel.text = sighting.description
         commentsLabel.text = "comments_count".localized(sighting.commentsCount ?? 0)
         likesLabel.text = "likes_count".localized(sighting.likesCount ?? 0)
-        locationLabel.text = "(\(sighting.latitude), \(sighting.longitude))"
+        ReverseGeocoder.getCity(latitude: sighting.latitude, longitude: sighting.longitude) { (cities) in
+            DispatchQueue.main.async {
+                self.locationLabel.text = cities.first
+            }
+        }
     }
 }
 
 // MARK: - Private methods
-private extension SightingCollectionViewCell {
+private extension SightingTableViewCell {
     func setupViews() {
+        self.selectionStyle = .none
         layer.masksToBounds = true
         layer.cornerRadius = 3
         setupImageView()
         setupLocationView()
+        setupLocationImageView()
+        setupLocationLabel()
         setupUserImageView()
         setupTitleLabel()
         setupUserLabel()
@@ -73,34 +82,35 @@ private extension SightingCollectionViewCell {
     }
     
     func setupImageView() {
-        addSubview(imageView)
-        imageView.clipsToBounds = true
-        imageView.kf.indicatorType = .activity
-        imageView.contentMode = .scaleAspectFill
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.opacity = 0.8
-        imageView.layer.addSublayer(gradientLayer)
-        imageView.snp.makeConstraints {
+        addSubview(flowerImageView)
+        flowerImageView.clipsToBounds = true
+        flowerImageView.kf.indicatorType = .activity
+        flowerImageView.contentMode = .scaleAspectFill
+        flowerImageView.snp.makeConstraints {
             $0.height.equalTo(UIScreen.main.bounds.size.width * 0.65)
             $0.top.leading.trailing.equalToSuperview()
         }
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width * 0.65)
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.opacity = 0.8
+        flowerImageView.layer.addSublayer(gradientLayer)
+
     }
-    
+        
     func setupLocationView() {
         addSubview(locationView)
         locationView.backgroundColor = UIColor.white
         locationView.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.top).offset(20)
-            $0.leading.equalTo(imageView.snp.leading).offset(20)
+            $0.top.equalTo(flowerImageView.snp.top).offset(20)
+            $0.leading.equalTo(flowerImageView.snp.leading).offset(20)
             $0.height.equalTo(26)
             $0.width.greaterThanOrEqualTo(100)
         }
-
         locationView.layer.cornerRadius = 13
-        
+    }
+    
+    func setupLocationImageView() {
         locationView.addSubview(locationImageView)
         locationImageView.contentMode = .scaleAspectFit
         locationImageView.image = UIImage(named: "plIconLocation")
@@ -109,7 +119,9 @@ private extension SightingCollectionViewCell {
             $0.centerY.equalToSuperview()
             $0.width.height.equalTo(16)
         }
-        
+    }
+    
+    func setupLocationLabel() {
         locationView.addSubview(locationLabel)
         locationLabel.font = .custom(type: .regular, size: 12)
         locationLabel.textColor = UIColor.flowrLightRed
@@ -129,8 +141,8 @@ private extension SightingCollectionViewCell {
         userImageView.contentMode = .scaleAspectFill
         userImageView.snp.makeConstraints {
             $0.height.width.equalTo(60)
-            $0.top.equalTo(imageView.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalTo(flowerImageView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(16)
         }
 
     }
@@ -141,7 +153,7 @@ private extension SightingCollectionViewCell {
         titleLabel.textColor = UIColor.black
         titleLabel.textAlignment = .left
         titleLabel.snp.makeConstraints {
-            $0.leading.equalTo(userImageView.snp.trailing).offset(24)
+            $0.leading.equalTo(userImageView.snp.trailing).offset(20)
             $0.trailing.equalTo(-26)
             $0.top.equalTo(userImageView.snp.top).offset(12)
         }

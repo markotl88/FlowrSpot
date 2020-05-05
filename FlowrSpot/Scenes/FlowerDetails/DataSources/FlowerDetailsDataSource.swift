@@ -19,28 +19,28 @@ class FlowerDetailsDataSource: NSObject, DataSource {
 }
 
 // MARK: - UICollectionView DataSource
-extension FlowerDetailsDataSource: UICollectionViewDataSource {
-  func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return numberOfSections()
-  }
-      
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return numberOfRows(in: section)
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let row = row(at: indexPath) else {
-      Logger.error("No availible row in dataSource at \(indexPath)")
-      return UICollectionViewCell()
+extension FlowerDetailsDataSource: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numberOfRows(in: section)
     }
     
-    let cell = collectionView.dequeueReusableCell(SightingCollectionViewCell.self, at: indexPath)
-    switch row {
-    case let .sighting(entity):
-      cell.setSighting(entity)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let row = row(at: indexPath) else {
+          Logger.error("No availible row in dataSource at \(indexPath)")
+          return UITableViewCell()
+        }
+        
+        let cell = tableView.dequeueReusableCell(SightingTableViewCell.self, at: indexPath)
+        switch row {
+        case let .sighting(entity):
+          cell.setSighting(entity)
+        }
+        return cell
     }
-    return cell
-  }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return numberOfSections()
+    }
 }
 
 // MARK: - Private Methods

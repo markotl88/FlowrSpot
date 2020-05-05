@@ -23,3 +23,5 @@
 "likes_count" = "%d Favorites";
 "by_user" = "by %@";
 "by_unknown_user" = "by Unknown user";
+"unknown_location" = "Unknown location";
+"add_sighting_title" = "Add New Sighting";

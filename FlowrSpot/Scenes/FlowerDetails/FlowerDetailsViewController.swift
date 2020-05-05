@@ -8,6 +8,12 @@
 
 import PovioKit
 
+fileprivate struct UIConstants {
+    static let rowEstimatedHeight: CGFloat = 300
+    static let headerEstimatedHeight: CGFloat = 300
+    static let footerEstimatedHeight: CGFloat = 0.1
+}
+
 protocol FlowerDetailsDisplayLogic: class {
     func displayFlower(_ flower: Flower)
     func displaySightings(_ sightings: [Sighting])
@@ -19,6 +25,7 @@ class FlowerDetailsViewController: UIViewController {
     var router: FlowerDetailsRoutingLogic?
     private lazy var contentView = FlowerDetailsContentView.autolayoutView()
     private let flowerDetailsDataSource = FlowerDetailsDataSource()
+    private let flowerDescriptionDataSource = FlowerDescriptionDataSource()
     
     init(delegate: FlowerDetailsRouterDelegate?, flowerId: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -41,13 +48,9 @@ class FlowerDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupContentView()
+        setupNavigationView()
         loadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        deinitViews()
     }
 }
 
@@ -55,12 +58,13 @@ class FlowerDetailsViewController: UIViewController {
 extension FlowerDetailsViewController: FlowerDetailsDisplayLogic {
     func displaySightings(_ sightings: [Sighting]) {
         flowerDetailsDataSource.update(sightings: sightings)
-        contentView.collectionView.reloadData()
+        contentView.tableView.reloadData()
         contentView.emptyView.isHidden = true
     }
     
     func displayFlower(_ flower: Flower) {
         contentView.headerView.updateFlower(flower)
+        flowerDescriptionDataSource.update(flower: flower)
     }
     
     func displayError(_ error: RemoteResourceError) {
@@ -70,38 +74,54 @@ extension FlowerDetailsViewController: FlowerDetailsDisplayLogic {
 }
 
 // MARK: - UICollectionView Delegate
-extension FlowerDetailsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        return contentView.collectionViewDimensions.sizeForItem(at: indexPath, for: collectionView)
-    }
+extension FlowerDetailsViewController: UITableViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    // MARK: - TableView cell setup
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let row = flowerDetailsDataSource.row(at: indexPath) else {
             Logger.error("No availible row in dataSource at \(indexPath)")
             return
         }
         switch row {
         case let .sighting(entity):
-            debugPrint("Entity: \(entity)")
-            //      router?.navigateToFlowerDetails(flower: entity)
+            router?.navigateToSightingDetails(sighting: entity)
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? FlowerDescriptionSectionHeaderView {
-                sectionHeader.label.text = "TRENDING"
-                return sectionHeader
-            }
-            return UICollectionReusableView()
-        } else { //No footer in this case but can add option for that
-            return UICollectionReusableView()
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 500)
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UIConstants.rowEstimatedHeight
+    }
+        
+    // MARK: - HeaderView setup
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableHeaderFooterView(FlowerDescriptionHeaderView.self)
+        cell.setDataSource(flowerDescriptionDataSource)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return UIConstants.headerEstimatedHeight
+    }
+    
+    // MARK: - FooterView setup
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return UIConstants.footerEstimatedHeight
     }
 }
 
@@ -136,11 +156,6 @@ private extension FlowerDetailsViewController {
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.flowrGray
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plIconDots")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(barButtonPressed))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.flowrGray
-        setupContentView()
-    }
-    
-    func deinitViews() {
-        contentView.headerView.deinitViews()
     }
     
     func setupContentView() {
@@ -148,11 +163,15 @@ private extension FlowerDetailsViewController {
         contentView.snp.makeConstraints { $0.edges.equalToSuperview() }
         contentView.rightBarButton.setImage(#imageLiteral(resourceName: "plIconSearch"), for: .normal)
         contentView.rightBarButton.addTarget(self, action: #selector(barButtonPressed), for: .touchUpInside)
-        contentView.collectionView.delegate = self
-        contentView.collectionView.dataSource = flowerDetailsDataSource
+        contentView.tableView.delegate = self
+        contentView.tableView.dataSource = flowerDetailsDataSource
+        contentView.headerView.addNewSighting = { [weak self] (flower) in
+            self?.router?.navigateToNewSighting(flower: flower)
+        }
     }
     
     func setupNavigationView() {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func loadData() {
@@ -165,6 +184,12 @@ private extension FlowerDetailsViewController {
     }
     
     @objc func barButtonPressed() {
-        contentView.collectionView.setContentOffset(CGPoint(x: 0, y: -contentView.headerViewHeight), animated: true)
+        contentView.tableView.setContentOffset(CGPoint(x: 0, y: -contentView.headerViewHeight), animated: true)
+    }
+}
+
+extension FlowerDetailsViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
