@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 class ReverseGeocoder {
-    static func getCity(latitude: Double, longitude: Double, completion: @escaping (([String]) -> ())) {
+    static func getCity(latitude: Double, longitude: Double, completion: @escaping (([String]) -> Void)) {
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)
         

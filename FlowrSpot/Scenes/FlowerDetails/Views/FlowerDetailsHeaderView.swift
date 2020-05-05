@@ -83,7 +83,7 @@ private extension FlowerDetailsHeaderView {
         addSubview(sightingImageView)
         
         sightingImageView.backgroundColor = .white
-        sightingImageView.image = UIImage(named: "plIconStar")
+        sightingImageView.image = AssetCatalog.plIconStar.image
         sightingImageView.contentMode = .center
         sightingImageView.snp.makeConstraints {
             $0.bottom.equalTo(titleLabel.snp.top).offset(-15)

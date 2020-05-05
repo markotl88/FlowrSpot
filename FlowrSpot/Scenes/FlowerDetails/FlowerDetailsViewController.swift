@@ -152,16 +152,16 @@ extension FlowerDetailsViewController: UIScrollViewDelegate {
 private extension FlowerDetailsViewController {
     func setupViews() {
         navigationItem.title = "general_app_name".localized()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "plIconBack")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(backBarButtonPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: AssetCatalog.plIconBack.image.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(backBarButtonPressed))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.flowrGray
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plIconDots")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(barButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: AssetCatalog.plIconDots.image.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(barButtonPressed))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.flowrGray
     }
     
     func setupContentView() {
         view.addSubview(contentView)
         contentView.snp.makeConstraints { $0.edges.equalToSuperview() }
-        contentView.rightBarButton.setImage(#imageLiteral(resourceName: "plIconSearch"), for: .normal)
+        contentView.rightBarButton.setImage(AssetCatalog.plIconSearch.image, for: .normal)
         contentView.rightBarButton.addTarget(self, action: #selector(barButtonPressed), for: .touchUpInside)
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = flowerDetailsDataSource

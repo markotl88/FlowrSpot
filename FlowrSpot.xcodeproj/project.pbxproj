@@ -100,6 +100,7 @@
 		4D5C3A7A245CD81400FF17BE /* FlowerDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5C3A79245CD81400FF17BE /* FlowerDetailsHeaderView.swift */; };
 		4D5C3A7C245CE27700FF17BE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5C3A7B245CE27700FF17BE /* UIView+Extension.swift */; };
 		4D7A1F4A245D5A1400FB8DC5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4D7A1F49245D5A1400FB8DC5 /* .swiftlint.yml */; };
+		4DB486582461D91100EA7BE0 /* AssetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB486572461D91100EA7BE0 /* AssetCatalog.swift */; };
 		99DC55B220160E1600E314D1 /* FlowersDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DC55B120160E1600E314D1 /* FlowersDownloaderTests.swift */; };
 		99EF39B922E7202D001230BD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF39B822E7202C001230BD /* SearchView.swift */; };
 		E68543E126BCC2F758FEE79A /* Pods_FlowrSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5502B36F092495137C78FE6B /* Pods_FlowrSpot.framework */; };
@@ -221,6 +222,7 @@
 		4D5C3A79245CD81400FF17BE /* FlowerDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerDetailsHeaderView.swift; sourceTree = "<group>"; };
 		4D5C3A7B245CE27700FF17BE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "FlowrSpot/Common/Extensions/UIView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		4D7A1F49245D5A1400FB8DC5 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		4DB486572461D91100EA7BE0 /* AssetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCatalog.swift; sourceTree = "<group>"; };
 		5502B36F092495137C78FE6B /* Pods_FlowrSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlowrSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A10E56857A093E82B31AC47 /* Pods-FlowrSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlowrSpot.debug.xcconfig"; path = "Target Support Files/Pods-FlowrSpot/Pods-FlowrSpot.debug.xcconfig"; sourceTree = "<group>"; };
 		6DD770B4A47C1A6A87F4FA5C /* Pods-FlowrSpotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlowrSpotTests.debug.xcconfig"; path = "Target Support Files/Pods-FlowrSpotTests/Pods-FlowrSpotTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		37603CDB2010965F00FB9F78 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4DB486572461D91100EA7BE0 /* AssetCatalog.swift */,
 				3787E6402015D1420080A599 /* Constants.swift */,
 			);
 			path = Utils;
@@ -1031,6 +1034,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37B4196C200E06C600173B80 /* AppDelegate.swift in Sources */,
+				4DB486582461D91100EA7BE0 /* AssetCatalog.swift in Sources */,
 				3787E6412015D1420080A599 /* Constants.swift in Sources */,
 				37603CEA2010975700FB9F78 /* DataSource.swift in Sources */,
 				4D3C0D742461968200EBC936 /* Date+Extension.swift in Sources */,

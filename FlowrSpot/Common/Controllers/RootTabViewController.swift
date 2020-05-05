@@ -38,10 +38,10 @@ private extension RootTabViewController {
     setViewControllers(viewControllers, animated: true)
     
     if let items = tabBar.items, items.count == viewControllers.count {
-      setupTabBarItem(items[0], using: #imageLiteral(resourceName: "favoritesIcons"), title: nil)
-      setupTabBarItem(items[1], using: #imageLiteral(resourceName: "commentIcon"), title: nil)
-      setupTabBarItem(items[2], using: #imageLiteral(resourceName: "sightingListIcon"), title: nil)
-      setupTabBarItem(items[3], using: #imageLiteral(resourceName: "newSightingIcon"), title: nil)
+      setupTabBarItem(items[0], using: AssetCatalog.plIconFavorites.image, title: nil)
+      setupTabBarItem(items[1], using: AssetCatalog.plIconCommentRed.image, title: nil)
+      setupTabBarItem(items[2], using: AssetCatalog.plIconSighting.image, title: nil)
+      setupTabBarItem(items[3], using: AssetCatalog.plIconNewSighting.image, title: nil)
     }
   }
   

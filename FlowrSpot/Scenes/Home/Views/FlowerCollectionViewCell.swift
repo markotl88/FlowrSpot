@@ -68,7 +68,7 @@ private extension FlowerCollectionViewCell {
     addSubview(favoriteButton)
     favoriteButton.backgroundColor = .white
     favoriteButton.layer.cornerRadius = 12
-    favoriteButton.setImage(#imageLiteral(resourceName: "favoritesIcons"), for: .normal)
+    favoriteButton.setImage(AssetCatalog.plIconFavorites.image, for: .normal)
     favoriteButton.snp.makeConstraints {
       $0.top.equalTo(12)
       $0.trailing.equalTo(-12)

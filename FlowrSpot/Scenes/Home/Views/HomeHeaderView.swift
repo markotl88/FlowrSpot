@@ -41,7 +41,7 @@ private extension HomeHeaderView {
 
   func setupBackgroundImageView() {
     addSubview(backgroundImageView)
-    backgroundImageView.image = UIImage(named: "plHero")
+    backgroundImageView.image = AssetCatalog.plIconHero.image
     backgroundImageView.contentMode = .scaleAspectFill
     backgroundImageView.snp.makeConstraints {
       $0.top.left.right.bottom.equalToSuperview()

@@ -99,7 +99,7 @@ private extension SearchView {
   
   func setupIconImageView() {
     addSubview(iconImageView)
-    iconImageView.image = UIImage(named: "plIconSearch")
+    iconImageView.image = AssetCatalog.plIconSearch.image
     iconImageView.snp.makeConstraints {
       $0.centerY.equalToSuperview()
       $0.right.equalTo(-20)

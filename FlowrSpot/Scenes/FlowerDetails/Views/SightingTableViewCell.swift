@@ -52,9 +52,9 @@ extension SightingTableViewCell {
         descriptionLabel.text = sighting.description
         commentsLabel.text = "comments_count".localized(sighting.commentsCount ?? 0)
         likesLabel.text = "likes_count".localized(sighting.likesCount ?? 0)
-        ReverseGeocoder.getCity(latitude: sighting.latitude, longitude: sighting.longitude) { (cities) in
+        ReverseGeocoder.getCity(latitude: sighting.latitude, longitude: sighting.longitude) { [weak self] (cities) in
             DispatchQueue.main.async {
-                self.locationLabel.text = cities.first
+                self?.locationLabel.text = cities.first
             }
         }
     }
@@ -113,7 +113,7 @@ private extension SightingTableViewCell {
     func setupLocationImageView() {
         locationView.addSubview(locationImageView)
         locationImageView.contentMode = .scaleAspectFit
-        locationImageView.image = UIImage(named: "plIconLocation")
+        locationImageView.image = AssetCatalog.plIconLocation.image
         locationImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(10)
             $0.centerY.equalToSuperview()
@@ -136,7 +136,7 @@ private extension SightingTableViewCell {
     func setupUserImageView() {
         addSubview(userImageView)
         userImageView.kf.indicatorType = .activity
-        userImageView.image = UIImage(named: "plIconUser")?.withRenderingMode(.alwaysTemplate)
+        userImageView.image = AssetCatalog.plIconUser.image.withRenderingMode(.alwaysTemplate)
         userImageView.tintColor = .flowrGray
         userImageView.contentMode = .scaleAspectFill
         userImageView.snp.makeConstraints {
@@ -201,7 +201,7 @@ private extension SightingTableViewCell {
     
     func setupCommentsImageView() {
         addSubview(commentsImageView)
-        commentsImageView.image = UIImage(named: "plIconComment")
+        commentsImageView.image = AssetCatalog.plIconComment.image
         commentsImageView.contentMode = .scaleAspectFit
         commentsImageView.snp.makeConstraints {
             $0.width.height.equalTo(20)
@@ -225,7 +225,7 @@ private extension SightingTableViewCell {
     
     func setupLikesImageView() {
         addSubview(likesImageView)
-        likesImageView.image = UIImage(named: "plIconLike")
+        likesImageView.image = AssetCatalog.plIconLike.image
         likesImageView.contentMode = .scaleAspectFit
         likesImageView.snp.makeConstraints {
             $0.width.height.equalTo(20)

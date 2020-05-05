@@ -32,9 +32,9 @@ extension SightingDetailsViewController {
     func setupViews() {
         self.view.backgroundColor = UIColor.white
         navigationItem.title = sighting.name
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "plIconBack")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(backBarButtonPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: AssetCatalog.plIconBack.image.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(backBarButtonPressed))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.flowrGray
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plIconDots")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(barButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: AssetCatalog.plIconDots.image.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(barButtonPressed))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.flowrGray
     }
         

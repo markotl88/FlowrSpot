@@ -30,7 +30,7 @@ extension NewSightingViewController {
         self.view.backgroundColor = UIColor.white
         
         navigationItem.title = "add_sighting_title".localized()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plIconClose")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(closeButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: AssetCatalog.plIconClose.image.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(closeButtonPressed))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.flowrGray
 
     }

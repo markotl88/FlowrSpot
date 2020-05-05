@@ -109,7 +109,7 @@ private extension HomeViewController {
   func setupContentView() {
     view.addSubview(contentView)
     contentView.snp.makeConstraints { $0.edges.equalToSuperview() }
-    contentView.rightBarButton.setImage(#imageLiteral(resourceName: "plIconSearch"), for: .normal)
+    contentView.rightBarButton.setImage(AssetCatalog.plIconSearch.image, for: .normal)
     contentView.rightBarButton.addTarget(self, action: #selector(barButtonPressed), for: .touchUpInside)
     contentView.collectionView.delegate = self
     contentView.collectionView.dataSource = flowersDataSource
